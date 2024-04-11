@@ -19,10 +19,10 @@ $(NAME): $(OBJS)
 %.o: %.c $(HEADER_FILE)
 		$(CC) -c $(CFLAG) $^ -o $@
 
-claen:
-	rm $(OBJS)
+clean:
+	rm -f $(OBJS)
 
-fclean:claen
+fclean:clean
 	rm $(NAME)
 
 norm :

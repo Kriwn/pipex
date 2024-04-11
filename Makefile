@@ -1,0 +1,35 @@
+NAME = pipex
+
+SRCS = free.c ft_split.c handleError.c \
+		path.c pipeUtils.c pipex.c		\
+		utils.c
+
+OBJS  = $(SRCS:.c=.o)
+
+
+
+CC = cc
+#CFLAG = -Wall -Wextra -Werror -Wunreachable-code
+CFLAG = -g
+all: $(NAME)
+
+$(NAME): norm $(OBJS)
+		$(CC) $(CFLAG) $(OBJS) -o $(NAME)
+
+%.o: %.c $(HEADER_FILE)
+		$(CC) -c $(CFLAG) $^ -o $@
+
+claen:
+	rm $(OBJS)
+
+fclean:claen
+	rm $(NAME)
+
+norm :
+	norminette
+
+valgrind : $(NAME)
+	valgrind --track-fds=yes --tool=memcheck --leak-check=full --track-origins=yes --show-leak-kinds=all $(NAME)
+re: fclean all
+
+.PHONY: all clean fclean re

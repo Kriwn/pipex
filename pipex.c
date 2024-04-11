@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 16:01:20 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/11 16:28:55 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:57:56 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void childProcess(char **argv, char **env, p_p *list)
 {
     if (list->count == 0)
         openInFile(argv[1], list);
-    // need new condition to do this function 
     else if (list->count == list->argc -1)
         openOutFile(argv[list->argc -1], list);
     else

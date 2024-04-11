@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:38:34 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/11 16:24:45 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:55:30 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void openOutFile(char *argv, p_p *list)
 {
     int fd;
 
-    fd = open(argv, O_RDWR);
+    fd = open(argv, O_RDWR| O_CREAT, 0644);
 
     if (fd == -1)
         ft_puterror("Cannot open file", errno, list);

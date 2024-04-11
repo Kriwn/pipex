@@ -1,7 +1,7 @@
 NAME = pipex
 
 SRCS = free.c ft_split.c handleError.c \
-		path.c pipeUtils.c pipex.c		\
+		path.c pipexUtils.c pipex.c		\
 		utils.c
 
 OBJS  = $(SRCS:.c=.o)
@@ -13,7 +13,7 @@ CC = cc
 CFLAG = -g
 all: $(NAME)
 
-$(NAME): norm $(OBJS)
+$(NAME): $(OBJS)
 		$(CC) $(CFLAG) $(OBJS) -o $(NAME)
 
 %.o: %.c $(HEADER_FILE)

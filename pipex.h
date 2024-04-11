@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 12:35:59 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/11 01:07:13 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:33:48 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,18 @@ void    runcmd(char *command, char **env,int infile ,p_p *list);
 //          pipe.c
 void    parentProcess(p_p *list);
 void    childProcess(char **argv, char **env, p_p *list);
-int wait_all_process(p_p *list)
+int wait_all_process(p_p *list);
 
 
 //          pipeUtils.c
 void    init(p_p *list,int argc);
-void openInFile(char **argv,p_p *list);
+void openInFile(char *argv,p_p *list);
 void openOutFile(char *argv, p_p *list);
 void    pipeWrite(p_p *list);
 
+//          utils.c
+size_t	ft_strlen(const char *s);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 #endif

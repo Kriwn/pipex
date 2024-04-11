@@ -6,11 +6,11 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:56:53 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/11 15:56:55 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:07:08 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipe.h"
+#include "pipex.h"
 
 size_t	count(char const *s, char c)
 {

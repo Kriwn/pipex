@@ -6,9 +6,11 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 16:02:09 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/11 16:02:11 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:33:40 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "pipex.h"
 
 size_t	ft_strlen(const char *s)
 {
@@ -45,4 +47,45 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	str[n + i] = '\0';
 	return (str);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*str;
+	size_t	len_s;
+
+	if (!s)
+		return (NULL);
+	len_s = ft_strlen(s);
+	if (start > len_s)
+		start = len_s;
+	if (len >= len_s - start)
+		len = len_s - start;
+	str = malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, &s[start], len + 1);
+	return (str);
+}
+
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+{
+	size_t	i;
+	size_t	len;
+
+	i = 0;
+	len = 0;
+	len = ft_strlen(src);
+	if (!dst || !src)
+		return (0);
+	if (size > 0)
+	{
+		while (src[i] && i < size - 1)
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
+	}
+	return (len);
 }

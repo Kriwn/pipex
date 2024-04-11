@@ -6,11 +6,11 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:38:34 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/11 16:00:38 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/11 16:24:45 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipe.h"
+#include "pipex.h"
 
 void init(p_p *list,int argc)
 {
@@ -22,7 +22,7 @@ void init(p_p *list,int argc)
     list->argc = argc;
     list->processPid = malloc(sizeof(int) * argc - 3); // name infile outfile
     if(list->processPid == NULL)
-        ft_puterror("Malloc error", errno, &list);
+        ft_puterror("Malloc error", errno, list);
     list->status = -1;
     list->infile = -1;    
     list->count = 0;
@@ -34,25 +34,25 @@ void init(p_p *list,int argc)
     }
 }
 
-void openInFile(char **argv,p_p *list)
+void openInFile(char *argv,p_p *list)
 {
-    list.infile = open(argvp[1], "O_RDONLY");
+    list->infile = open(argv, O_RDONLY);
 
-    if (list.infile == -1)
-        ft_puterror("Cannot open file", errno, &list);
+    if (list->infile == -1)
+        ft_puterror("Cannot open file", errno, list);
 }
 
 void openOutFile(char *argv, p_p *list)
 {
     int fd;
 
-    fd = open(argv, "O_RDWR");
+    fd = open(argv, O_RDWR);
 
     if (fd == -1)
-        ft_puterror("Cannot open file", error, &list);
-    duo2(fd, 1);
-    close(list.pipe[0]);
-    close(list.pipe[1]);
+        ft_puterror("Cannot open file", errno, list);
+    dup2(fd, 1);
+    close(list->pipe[0]);
+    close(list->pipe[1]);
     close(fd);
 }
 

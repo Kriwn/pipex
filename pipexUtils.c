@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:38:34 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/11 20:22:47 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:08:36 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void openInFile(char *argv,p_p *list)
 
     if (list->infile == -1)
         ft_puterror("Cannot open file", errno, list);
-    dprintf(2, "here in open file\n");
 }
 
 void openOutFile(char *argv, p_p *list)
@@ -51,7 +50,6 @@ void openOutFile(char *argv, p_p *list)
 
     if (fd == -1)
         ft_puterror("Cannot open file", errno, list);
-    dprintf(2, "op out to [%d]\n", fd);
     dup2(fd, STDOUT_FILENO);
     close(list->pipe[0]);
     close(list->pipe[1]);

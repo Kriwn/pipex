@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:59:09 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/11 20:18:00 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/12 16:07:46 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void runcmd(char *command, char **env,int infile ,p_p *list)
     
     path = NULL;
     args = ft_split(command, ' '); // "ls -la"
-    dprintf(2, "cmd is [%s] infile [%d]\n", command , infile);
     if (!findslash(command))
         path = findPath(env);
     cmd = cmdPath(args[0], path);
@@ -100,8 +99,7 @@ void runcmd(char *command, char **env,int infile ,p_p *list)
     close(infile);
     if (execve(cmd, args,env) == -1)
     {
-        dprintf(2, "errir????");
-        //do handle own  error 
+        freelist(list);
         if (!args)
             free(args);
         if (!path)

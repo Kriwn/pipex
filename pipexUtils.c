@@ -5,62 +5,51 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/11 15:38:34 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/12 16:08:36 by krwongwa         ###   ########.fr       */
+/*   Created: 2024/04/13 23:31:09 by krwongwa          #+#    #+#             */
+/*   Updated: 2024/04/14 01:34:25 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void init(p_p *list,int argc)
+void	init(t_p *list, int argc)
 {
-    size_t  i;
-    
-    i = 0;
-    list->pipe[0] = -1;
-    list->pipe[1] = -1;
-    list->argc = argc;
-    list->processPid = malloc(sizeof(int) * argc - 3); // name infile outfile
-    if(list->processPid == NULL)
-        ft_puterror("Malloc error", errno, list);
-    list->status = -1;
-    list->infile = -1;    
-    list->count = 0;
+	size_t	i;
 
-    while(list->processPid[i])
-    {
-        list->processPid[i] = -1;
-        i++;
-    }
+	i = 0;
+	list->pipe[0] = -1;
+	list->pipe[1] = -1;
+	list->argc = argc;
+	list->process_pid = malloc(sizeof(int) * argc - 3);
+	if (list->process_pid == NULL)
+		ft_puterror("Malloc error", errno, list);
+	list->infile = -1;
+	list->count = 0;
 }
 
-void openInFile(char *argv,p_p *list)
+void	open_in_file(char *argv, t_p *list)
 {
-    list->infile = open(argv, O_RDONLY);
-
-    if (list->infile == -1)
-        ft_puterror("Cannot open file", errno, list);
+	list->infile = open(argv, O_RDONLY);
+	if (list->infile == -1)
+		ft_puterror(argv, errno, list);
 }
 
-void openOutFile(char *argv, p_p *list)
+void	open_out_file(char *argv, t_p *list)
 {
-    int fd;
+	int	fd;
 
-    fd = open(argv, O_RDWR| O_TRUNC |O_CREAT, 0644);
-
-    if (fd == -1)
-        ft_puterror("Cannot open file", errno, list);
-    dup2(fd, STDOUT_FILENO);
-    close(list->pipe[0]);
-    close(list->pipe[1]);
-    close(fd);
-  
+	fd = open(argv, O_RDWR | O_TRUNC | O_CREAT, 0644);
+	if (fd == -1)
+		ft_puterror(argv, errno, list);
+	dup2(fd, STDOUT_FILENO);
+	close(list->pipe[0]);
+	close(list->pipe[1]);
+	close(fd);
 }
 
-
-void    pipeWrite(p_p *list)
+void	pipe_write(t_p *list)
 {
-        close(list->pipe[0]);
-        dup2(list->pipe[1], 1);
-        close(list->pipe[1]); 
+	close(list->pipe[0]);
+	dup2(list->pipe[1], 1);
+	close(list->pipe[1]);
 }

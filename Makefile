@@ -9,7 +9,7 @@ OBJS  = $(SRCS:.c=.o)
 
 
 CC = cc
-#CFLAG = -Wall -Wextra -Werror -Wunreachable-code
+CFLAG = -Wall -Wextra -Werror -Wunreachable-code
 CFLAG = -g
 all: $(NAME)
 
@@ -29,7 +29,7 @@ norm :
 	norminette
 
 valgrind : $(NAME)
-	valgrind --track-fds=yes --tool=memcheck --leak-check=full --track-origins=yes --show-leak-kinds=all $(NAME)
+	valgrind --track-fds=yes --tool=memcheck --leak-check=full --track-origins=yes --show-leak-kinds=all ./$(NAME)
 re: fclean all
 
 .PHONY: all clean fclean re

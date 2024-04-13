@@ -5,75 +5,70 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/11 16:01:20 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/12 16:08:25 by krwongwa         ###   ########.fr       */
+/*   Created: 2024/04/14 01:12:29 by krwongwa          #+#    #+#             */
+/*   Updated: 2024/04/14 01:30:57 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void parentProcess(p_p *list)
+void	parent_process(t_p *list)
 {
-    if (list->infile  > -1)
-        close(list->infile);
-    list->infile = dup(list->pipe[0]);
-    close(list->pipe[0]);
-    list->count += 1;
-    close(list->pipe[1]);
+	if (list->infile > -1)
+		close(list->infile);
+	list->infile = dup(list->pipe[0]);
+	close(list->pipe[0]);
+	list->count += 1;
+	close(list->pipe[1]);
 }
 
-void childProcess(char **argv, char **env, p_p *list)
+void	child_process(char **argv, char **env, t_p *list)
 {
-    if (list->count == 0)
-        openInFile(argv[1], list);
-
-    if (list->count == list->argc - 4)
-    {
-        openOutFile(argv[list->argc -1], list);
-    }
-    else
-    {
-        pipeWrite(list); // first command shold run this
-    }
-    runcmd(argv[list->count + 2], env, list->infile, list);
+	if (list->count == 0)
+		open_in_file(argv[1], list);
+	if (list->count == list->argc - 4)
+		open_out_file(argv[list->argc -1], list);
+	else
+		pipe_write(list);
+	run_cmd(argv[list->count + 2], env, list->infile, list);
 }
 
-int wait_all_process(p_p *list)
+int	wait_all_process(t_p *list)
 {
-    size_t  i;
-    
-    i = 0;
-    while(i < list->argc - 3)
-    {
-        if (list->processPid[i] > -1)
-            waitpid(list->processPid[i], &list->status, WUNTRACED);
-        i++;
-    }
-    freelist(list);
-    return (WEXITSTATUS(list->status));
+	size_t	i;
+	int		status;
+
+	i = 0;
+	while (i < list->argc - 3)
+	{
+		if (list->process_pid[i] > -1)
+			waitpid(list->process_pid[i], &status, WUNTRACED);
+		i++;
+	}
+	freelist(list);
+	return (WEXITSTATUS(status));
 }
 
-int main(int argc, char **argv,char **env)
+int	main(int argc, char **argv, char **env)
 {
-    p_p     *list;
-    
-    list = malloc(sizeof(p_p));
-    if (argc < 4)
-    {
-        ft_puterror("Input wrong argument", 22, list);
-    }
-    init(list, argc);
-    while(list->count < argc - 3)
-    {
-        if (pipe(list->pipe) == -1)
-            ft_puterror("Pipe error", errno, list); 
-        list->processPid[list->count] = fork();
-        if (list->processPid[list->count] == -1)
-            ft_puterror("Fork error", errno, list);
-        if (list->processPid[list->count] == 0)
-            childProcess(argv, env, list);
-        else if (list->processPid[list->count] > 0)
-            parentProcess(list);
-    }
-    return (wait_all_process(list));
+	t_p	*list;
+	int	status;
+
+	list = malloc(sizeof(t_p));
+	if (argc != 5)
+		ft_puterror("Input wrong argument", 22, list);
+	init(list, argc);
+	while (list->count < argc - 3)
+	{
+		if (pipe(list->pipe) == -1)
+			ft_puterror("Pipe error", errno, list);
+		list->process_pid[list->count] = fork();
+		if (list->process_pid[list->count] == -1)
+			ft_puterror("Fork error", errno, list);
+		if (list->process_pid[list->count] == 0)
+			child_process(argv, env, list);
+		else if (list->process_pid[list->count] > 0)
+			parent_process(list);
+	}
+	return (wait_all_process(list));
 }

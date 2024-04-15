@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipexUtils.c                                       :+:      :+:    :+:   */
+/*   pipex_utils_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 23:31:09 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/14 01:34:25 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/15 19:19:00 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	init(t_p *list, int argc)
 {
@@ -23,8 +23,15 @@ void	init(t_p *list, int argc)
 	list->process_pid = malloc(sizeof(int) * argc - 3);
 	if (list->process_pid == NULL)
 		ft_puterror("Malloc error", errno, list);
+	list->here_doc = 0;
 	list->infile = -1;
 	list->count = 0;
+	while (i < (argc - 3))
+	{
+		list->process_pid[i] = 0;
+		i++;
+	}
+
 }
 
 void	open_in_file(char *argv, t_p *list)
@@ -34,11 +41,17 @@ void	open_in_file(char *argv, t_p *list)
 		ft_puterror(argv, errno, list);
 }
 
-void	open_out_file(char *argv, t_p *list)
+void	open_out_file(char *argv, t_p *list, int flag)
 {
 	int	fd;
 
-	fd = open(argv, O_RDWR | O_TRUNC | O_CREAT, 0644);
+	if (flag)
+		fd = open(argv, O_RDWR | O_TRUNC | O_CREAT, 0644);
+	else
+	{
+		dprintf(2,"ADSADSA\n");
+		fd = open(argv, O_RDWR | O_APPEND | O_CREAT, 0644);
+	}
 	if (fd == -1)
 		ft_puterror(argv, errno, list);
 	dup2(fd, STDOUT_FILENO);

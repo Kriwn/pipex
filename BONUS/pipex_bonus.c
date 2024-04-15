@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.c                                            :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 01:12:29 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/14 14:09:10 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/15 15:47:43 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
 void	parent_process(t_p *list)
 {
@@ -27,7 +27,12 @@ void	child_process(char **argv, char **env, t_p *list)
 	if (list->count == 0)
 		open_in_file(argv[1], list);
 	if (list->count == list->argc - 4)
-		open_out_file(argv[list->argc -1], list);
+	{
+		if (list->here_doc)
+			open_out_file(argv[list->argc -1], list, 0);
+		else
+			open_out_file(argv[list->argc -1], list, 1);
+	}
 	else
 		pipe_write(list);
 	run_cmd(argv[list->count + 2], env, list->infile, list);
@@ -55,9 +60,11 @@ int	main(int argc, char **argv, char **env)
 	int	status;
 
 	list = malloc(sizeof(t_p));
-	if (argc != 5)
+	if (argc < 4)
 		ft_puterror("Input wrong argument", 22, list);
 	init(list, argc);
+	if (check(argv[1], "here_doc"))
+		list->here_doc = do_here_doc(argv[2], list);
 	while (list->count < argc - 3)
 	{
 		if (pipe(list->pipe) == -1)

@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:56:01 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/17 20:29:23 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/18 20:31:27 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	freelist(t_p *list)
 	free(list);
 }
 
-void	free2darr(char **str)
+char	**free2darr(char **str)
 {
 	size_t	i;
 	char	*temp;
@@ -40,6 +40,7 @@ void	free2darr(char **str)
 		}
 		free(str);
 	}
+	return (NULL);
 }
 
 void	clear_here_doc(t_p *list, char *getline, int fd[2])

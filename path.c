@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 00:54:54 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/18 16:43:56 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/18 20:34:50 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	find_slash(char *command)
 {
 	size_t	i;
 
+	if (!command)
+		return (0);
 	i = 0;
 	while (command[i])
 	{
@@ -64,6 +66,7 @@ char	**find_path(char **env)
 char	*cmd_path(char *command, char **path)
 {
 	char	*temp;
+	char	*buff;
 	size_t	i;
 
 	if (!command)
@@ -75,13 +78,15 @@ char	*cmd_path(char *command, char **path)
 	while (path != NULL && path[i])
 	{
 		temp = ft_strjoin(path[i], "/");
+		buff = temp;
 		temp = ft_strjoin(temp, command);
+		free(buff);
 		if (access(temp, X_OK) == 0)
 			return (temp);
 		free(temp);
 		i++;
 	}
-	return (NULL);
+	return (command);
 }
 
 void	run_cmd(char *command, char **env, int infile, t_p *list)
@@ -102,11 +107,9 @@ void	run_cmd(char *command, char **env, int infile, t_p *list)
 	{
 		num = ft_puterrorcmd(args[0], errno, list);
 		if (args)
-			free2darr(args);
+			args = free2darr(args);
 		if (path)
-			free2darr(path);
-		if (cmd)
-			free(cmd);
+			path = free2darr(path);
 		freelist(list);
 		exit(num);
 	}

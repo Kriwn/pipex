@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 12:35:59 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/14 13:19:42 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:33:57 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct p_pipe
 
 //          free.c
 void	freelist(t_p *list);
-void	free2darr(char **str);
+char	**free2darr(char **str);
 
 //          ft_split.c
 size_t	count(char const *s, char c);

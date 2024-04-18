@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 12:35:59 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/15 19:51:35 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:52:25 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,59 +34,54 @@ typedef struct p_pipe
 }	t_p;
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 23
 # endif
 # define FD_MAX 1024
 
-//          free.c
+//          free_bonus.c
 void	freelist(t_p *list);
 void	free2darr(char **str);
+void	clear_here_doc(t_p *list, char *getline, int *fd);
 
-//          ft_split.c
+//          ft_split_bonus.c
 size_t	count(char const *s, char c);
 int		makearray(char **ptr, char const *s, char c);
 char	**ft_split(char const *s, char c);
 
-//          handleError.c
+//          handleError_bonus.c
 void	ft_putstr_fd(char *s, int fd);
 void	ft_puterror(char *s, int errnum, t_p *list);
 int		ft_puterrorcmd(char *s, int errnum, t_p *list);
 
-//          path.c
+//          path_bonus.c
 int		find_slash(char *command);
 int		check(char *env, char *path);
 char	**find_path(char **env);
 char	*cmd_path(char *command, char **path);
 void	run_cmd(char *command, char **env, int infile, t_p *list);
 
-//          pipe.c
+//          pipe_bonus.c
 void	parent_process(t_p *list);
 void	child_process(char **argv, char **env, t_p *list);
 int		wait_all_process(t_p *list);
 
-//          pipeUtils.c
+//          pipeUtils_bonus.c
 void	init(t_p *list, int argc);
 void	open_in_file(char *argv, t_p *list);
 void	open_out_file(char *argv, t_p *list, int flag);
 void	pipe_write(t_p *list);
 
-//          utils.c
+//          utils_bonus.c
 size_t	ft_strlen(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
+// char	*ft_strdup(const char *s);
 
-//			here_doc.c
+//			here_doc_bonus.c
 int		do_here_doc(char *str, t_p *list);
 
-//			get_next_line.c
-char	*clearline(char **file, size_t pos);
-char	*ft_readline(char *file, char *buffer, int fd);
-char	*makebuff(char **file, int fd);
-char	*get_next_line(int fd);
-
-//			get_next_line_utils.c
-char	*ft_linejoin(char *s1, char const *s2);
-char	*ft_strdup(const char *s);
-char	*ft_strrchr(const char *s, int c);
+//			utils2_bonus.c
+void	ft_bzero(void *s, size_t n);
+void	*ft_calloc(size_t nmemb, size_t size);
 #endif

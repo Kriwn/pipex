@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:56:01 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/15 19:50:27 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/17 20:29:23 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,15 @@ void	free2darr(char **str)
 		}
 		free(str);
 	}
+}
+
+void	clear_here_doc(t_p *list, char *getline, int fd[2])
+{
+	if (getline)
+		free(getline);
+	getline = NULL;
+	list->count += 1;
+	list->infile = dup(fd[0]);
+	close(fd[0]);
+	close(fd[1]);
 }

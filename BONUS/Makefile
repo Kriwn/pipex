@@ -2,8 +2,7 @@ NAME = pipex
 
 SRCS = free_bonus.c ft_split_bonus.c handle_error_bonus.c \
 		path_bonus.c pipex_utils_bonus.c pipex_bonus.c	\
-		utils_bonus.c get_next_line_utils.c get_next_line.c \
-		here_doc.c
+		utils_bonus.c utils2_bonus.c here_doc.c \
 
 OBJS  = $(SRCS:.c=.o)
 

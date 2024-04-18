@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 23:31:09 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/15 19:19:00 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/18 16:52:07 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	init(t_p *list, int argc)
 		list->process_pid[i] = 0;
 		i++;
 	}
-
 }
 
 void	open_in_file(char *argv, t_p *list)
@@ -48,10 +47,7 @@ void	open_out_file(char *argv, t_p *list, int flag)
 	if (flag)
 		fd = open(argv, O_RDWR | O_TRUNC | O_CREAT, 0644);
 	else
-	{
-		dprintf(2,"ADSADSA\n");
 		fd = open(argv, O_RDWR | O_APPEND | O_CREAT, 0644);
-	}
 	if (fd == -1)
 		ft_puterror(argv, errno, list);
 	dup2(fd, STDOUT_FILENO);

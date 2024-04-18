@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 16:02:09 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/14 12:55:44 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/17 20:17:11 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	char	*str;
 	size_t	len_s;
 
-	if (!s)
+	if (!s || len == 0)
 		return (NULL);
 	len_s = ft_strlen(s);
 	if (start > len_s)
@@ -89,3 +89,21 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	}
 	return (len);
 }
+
+// char	*ft_strdup(const char *s)
+// {
+// 	size_t	i;
+// 	char	*ptr;
+
+// 	i = 0;
+// 	ptr = malloc(sizeof(char) * (ft_strlen(s) + 1));
+// 	if (!ptr)
+// 		return (NULL);
+// 	while (s[i])
+// 	{
+// 		ptr[i] = s[i];
+// 		i++;
+// 	}
+// 	ptr[i] = '\0';
+// 	return (ptr);
+// }

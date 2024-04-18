@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   utils2_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/11 15:56:01 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/17 19:42:48 by krwongwa         ###   ########.fr       */
+/*   Created: 2024/04/17 20:14:44 by krwongwa          #+#    #+#             */
+/*   Updated: 2024/04/17 20:15:57 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-void	freelist(t_p *list)
+void	ft_bzero(void *s, size_t n)
 {
-	close(list->pipe[0]);
-	close(list->pipe[1]);
-	if (list->infile > -1)
-		close(list->infile);
-	list->count = 0;
-	free(list->process_pid);
-	list->argc = 0;
-	free(list);
+	size_t			i;
+	unsigned char	*str;
+
+	str = (unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		str[i] = '\0';
+		i ++;
+	}
 }
 
-void	free2darr(char **str)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t	i;
-	char	*temp;
+	void	*ptr;
 
-	i = 0;
-	if (str)
-	{
-		while (str[i])
-		{
-			temp = str[i];
-			free(temp);
-			i++;
-		}
-		free(str);
-	}
+	ptr = malloc(nmemb * size);
+	if (!(ptr))
+		return (NULL);
+	ft_bzero (ptr, nmemb * size);
+	return (ptr);
 }

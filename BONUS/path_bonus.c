@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 00:54:54 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/18 20:34:20 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:07:29 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	run_cmd(char *command, char **env, int infile, t_p *list)
 	close(infile);
 	if (execve(cmd, args, env) == -1)
 	{
-		num = ft_puterrorcmd(args[0], errno, list);
+		num = ft_puterrorcmd(args[0], errno);
 		if (args)
 			args = free2darr(args);
 		if (path)

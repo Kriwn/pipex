@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 12:35:59 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/18 20:32:38 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:07:05 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ char	**ft_split(char const *s, char c);
 //          handleError_bonus.c
 void	ft_putstr_fd(char *s, int fd);
 void	ft_puterror(char *s, int errnum, t_p *list);
-int		ft_puterrorcmd(char *s, int errnum, t_p *list);
+int		ft_puterrorcmd(char *s, int errnum);
 
 //          path_bonus.c
 int		find_slash(char *command);

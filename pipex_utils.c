@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 23:31:09 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/14 12:54:40 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:05:52 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init(t_p *list, int argc)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	list->pipe[0] = -1;
@@ -25,6 +25,11 @@ void	init(t_p *list, int argc)
 		ft_puterror("Malloc error", errno, list);
 	list->infile = -1;
 	list->count = 0;
+	while (i < (argc - 3))
+	{
+		list->process_pid[i] = 0;
+		i++;
+	}
 }
 
 void	open_in_file(char *argv, t_p *list)

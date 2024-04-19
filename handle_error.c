@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 15:58:41 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/14 12:54:25 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:04:07 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_puterror(char *s, int errnum, t_p *list)
 	exit(errnum);
 }
 
-int	ft_puterrorcmd(char *s, int errnum, t_p *list)
+int	ft_puterrorcmd(char *s, int errnum)
 {
 	if (errnum == 14)
 	{

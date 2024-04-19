@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 13:45:52 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/18 16:54:34 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/19 12:56:26 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	check_here_doc(char *str, char *ans)
 	return (n);
 }
 
-int	gethere_doc(char **getline, char *str)
+int	gethere_doc(char **getline)
 {
 	char	buff[2];
 	char	*temp;
@@ -79,7 +79,7 @@ int	do_here_doc(char *str, t_p *list)
 	{
 		write(1, "> ", 2);
 		getline = ft_calloc(1, 1);
-		if (gethere_doc(&getline, str) == -1)
+		if (gethere_doc(&getline) == -1)
 			break ;
 		if (check_here_doc(getline, str))
 			break ;

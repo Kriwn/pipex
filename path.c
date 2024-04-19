@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 00:54:54 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/18 20:34:50 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/19 12:14:26 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,8 @@ int	check(char *env, char *path)
 
 char	**find_path(char **env)
 {
-	size_t	i;
 	char	**ans;
 
-	i = 0;
 	if (env == NULL)
 		return (NULL);
 	while (env)
@@ -105,7 +103,7 @@ void	run_cmd(char *command, char **env, int infile, t_p *list)
 	close(infile);
 	if (execve(cmd, args, env) == -1)
 	{
-		num = ft_puterrorcmd(args[0], errno, list);
+		num = ft_puterrorcmd(args[0], errno);
 		if (args)
 			args = free2darr(args);
 		if (path)

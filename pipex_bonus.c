@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 01:12:29 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/15 15:47:43 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/19 12:55:54 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	child_process(char **argv, char **env, t_p *list)
 
 int	wait_all_process(t_p *list)
 {
-	size_t	i;
-	int		status;
+	int	i;
+	int	status;
 
 	i = 0;
 	while (i < list->argc - 3)
@@ -57,7 +57,6 @@ int	wait_all_process(t_p *list)
 int	main(int argc, char **argv, char **env)
 {
 	t_p	*list;
-	int	status;
 
 	list = malloc(sizeof(t_p));
 	if (argc < 4)

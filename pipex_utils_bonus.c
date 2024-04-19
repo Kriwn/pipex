@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/13 23:31:09 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/18 16:52:07 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/19 12:55:05 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init(t_p *list, int argc)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	list->pipe[0] = -1;

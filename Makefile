@@ -14,7 +14,7 @@ OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 CC = cc
 CFLAG = -Wall -Wextra -Werror -Wunreachable-code
-# CFLAG = -g
+
 all: $(NAME)
 
 $(NAME): $(OBJS)

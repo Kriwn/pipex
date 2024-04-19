@@ -32,8 +32,6 @@ clean:
 fclean:clean
 	rm -f $(NAME)
 
-valgrind : $(NAME)
-	valgrind --track-fds=yes --tool=memcheck --leak-check=full --track-origins=yes --show-leak-kinds=all
 re: fclean all
 
 .PHONY: all clean fclean re bonus

@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 12:35:59 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/19 13:41:45 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/19 14:12:37 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ typedef struct p_pipe
 	int	count;
 	int	here_doc;
 }	t_p;
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 23
-# endif
-# define FD_MAX 1024
 
 //          free_bonus.c
 void	freelist(t_p *list);

@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 01:12:29 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/19 12:15:45 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:17:07 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int	main(int argc, char **argv, char **env)
 	t_p	*list;
 
 	list = malloc(sizeof(t_p));
+	init(list, argc);
 	if (argc != 5)
 		ft_puterror("Input wrong argument", 22, list);
-	init(list, argc);
 	while (list->count < argc - 3)
 	{
 		if (pipe(list->pipe) == -1)

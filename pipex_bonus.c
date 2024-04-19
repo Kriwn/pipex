@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 01:12:29 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/19 13:53:28 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:58:44 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int argc, char **argv, char **env)
 
 	list = malloc(sizeof(t_p));
 	init(list, argc);
-	if (argc < 4)
+	if (argc <= 4)
 		ft_puterror("Input wrong argument", 22, list);
 	if (check(argv[1], "here_doc"))
 		list->here_doc = do_here_doc(argv[2], list);

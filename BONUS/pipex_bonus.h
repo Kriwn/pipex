@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 12:35:59 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/19 13:08:51 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:42:54 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct p_pipe
 //          free_bonus.c
 void	freelist(t_p *list);
 char	**free2darr(char **str);
-void	clear_here_doc(t_p *list, char *getline, int *fd);
+void	clear_here_doc(t_p *list, char *getline, int fd[2]);
 
 //          ft_split_bonus.c
 size_t	count(char const *s, char c);

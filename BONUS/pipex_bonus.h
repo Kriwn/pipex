@@ -6,7 +6,7 @@
 /*   By: krwongwa <krwongwa@student.42bangkok.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 12:35:59 by krwongwa          #+#    #+#             */
-/*   Updated: 2024/04/19 13:07:05 by krwongwa         ###   ########.fr       */
+/*   Updated: 2024/04/19 13:08:51 by krwongwa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
 //			here_doc_bonus.c
+int		check_new_line(char *str);
+int		check_here_doc(char *str, char *ans);
+int		gethere_doc(char **getline);
 int		do_here_doc(char *str, t_p *list);
 
 //			utils2_bonus.c
